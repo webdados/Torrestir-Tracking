@@ -21,3 +21,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/functions.php';
+
+
+/**
+ * Update from GitHub releases.
+ */
+require 'plugin-update-checker-5.6/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+$update_checker = PucFactory::buildUpdateChecker(
+	'https://github.com/webdados/Torrestir-Tracking',
+	__FILE__,
+	'torrestir-tracking'
+);
+// Set releases as the source that contains the stable release.
+$update_checker->getVcsApi()->enableReleaseAssets();
+// No token needed as this repository is public
